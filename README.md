@@ -43,7 +43,7 @@ By automating the detection process, *Farmy & Foods* can save inspection time, r
   - Downloading result tables
 - Provide UI feedback on model performance and hypothesis validation.
 
-## 🧾 User Stories
+## User Stories
 
 ### Epic 1: Data Understanding and Visualization
 - *As a data analyst*, I want to study the visual differences between healthy and mildew-infected leaves so I can better understand the problem.
@@ -69,29 +69,38 @@ By automating the detection process, *Farmy & Foods* can save inspection time, r
 
 ## Dashboard Pages & Design
 
-### 1. Project Summary
-- Text overview
-- Business objectives
-- Dataset summary
+### 1. **Project Summary**
+- Text overview of project context and objectives
+- Dataset summary and business requirements
+- Widget: Informational markdown
 
-### 2. Visual Differences
+### 2. **Visual Differentiation Study**
 - Image montage (healthy vs infected)
-- Average and variability images
-- Visual + textual interpretation
+- Average and variability images per class
+- Difference between average class images
+- Scatterplot of image dimension distribution
+- Histogram of pixel intensity
+- Widgets: Checkboxes, sliders, selectbox, button for generating image montage
+- Interpretation markdown and Streamlit `st.info`, `st.warning` for user guidance
 
-### 3. Predictions Interface
-- File uploader (multiple images)
-- Show image + prediction + confidence
-- Downloadable prediction table
+### 3. **Mildew Detection Tool**
+- Image file uploader (multiple image support)
+- Inline preview of each uploaded image
+- Real-time class prediction with confidence score
+- Table of results (with download option)
+- Widgets: File uploader, prediction table, download button
 
-### 4. Hypothesis Validation
-- Stated hypothesis: *"A CNN can reach 97%+ accuracy using resized cherry leaf images."*
-- Validation steps and results
+### 4. **Hypothesis & Validation**
+- Clearly stated hypothesis
+- Validation through visual inspection & model results
+- Qualitative and quantitative evaluation summary
+- Widget: Informational markdown and structured layout
 
-### 5. Model Performance
-- Learning curves
-- Confusion matrix
-- Test set accuracy
+### 5. **Model Performance**
+- Learning curves (accuracy/loss)
+- Confusion matrix and class distribution
+- Test metrics: accuracy, precision, recall, F1
+- Statement whether model achieved required performance
 
 ## Model Evaluation
 
@@ -132,13 +141,10 @@ By automating the detection process, *Farmy & Foods* can save inspection time, r
 
 This project is version-controlled using **Git & GitHub**. Commit messages follow a clear format and branches are used to separate experimentation from stable code.
 
-
-
 ## Dataset Content
 
 The dataset comprises **cherry leaf images** from real plantations, labeled as either **healthy** or infected with **powdery mildew**, a common fungal disease. These images are standardized at 256×256 pixels and were collected by the IT & Innovation team at Farmy & Foods for the purpose of building a computer vision solution.
 
----
 
 ## Business Requirements
 
@@ -147,7 +153,6 @@ As a Data Analyst working on behalf of Farmy & Foods, your role is to provide in
 * **Requirement 1:** The client seeks a visual study that helps differentiate healthy cherry leaves from those infected with powdery mildew.
 * **Requirement 2:** The client wants an automated prediction tool that identifies whether a leaf is healthy or diseased from an uploaded image.
 
----
 
 ## Hypothesis and Validation
 
@@ -160,7 +165,6 @@ To validate:
 - We will compare image statistics between healthy and mildew-infected classes.
 - We will train and evaluate a deep learning model.
 
----
 
 ## Rationale: Business Requirements → Visualizations & ML Tasks
 
@@ -168,13 +172,12 @@ To validate:
 - Display **mean and standard deviation images** per class.
 - Show the **difference between average healthy and infected images**.
 - Present **image montages** for each class to illustrate sample diversity.
+- Plot image dimension distribution and pixel intensity histogram.
 
 ### Business Requirement 2: Image Classification
 - Build a binary image classifier (CNN) to distinguish between classes.
 - Provide **real-time predictions** via a Streamlit dashboard.
 - Include **model performance evaluation** (confusion matrix, accuracy, confidence levels).
-
----
 
 ## Dashboard Design (Streamlit App UI)
 
@@ -183,12 +186,13 @@ To validate:
 - Details about dataset origin and structure.
 - Clarification of business requirements and relevance.
 
-### Page 2: Leaf Visualizer
+### Page 2: Leaf Visualizer (Visual Differentiation Study)
 - For answering Business Requirement 1
   - Show average & variability image differences.
   - Highlight key visual signs using montages and overlays.
+  - Show dimension distribution & intensity histogram.
 
-### Page 3: Mildew Detector
+### Page 3: Mildew Detector (Prediction Interface)
 - For answering Business Requirement 2
   - Upload multiple cherry leaf images.
   - Display prediction label and probability for each image.
@@ -202,3 +206,40 @@ To validate:
 - Visualize class balance across splits.
 - Show model training history (accuracy/loss curves).
 - Provide test performance metrics and interpretation.
+
+## Deployment
+
+The app is deployed on Heroku using:
+- **Procfile** for command execution
+- **setup.sh** for installing system packages (e.g., Streamlit)
+- **runtime.txt** to specify Python version
+- **requirements.txt** for Python package dependencies
+
+> The deployed app supports image uploads and real-time prediction using the trained CNN model.
+
+## Main Data Analysis and Machine Learning Libraries
+
+- `pandas`, `numpy`: Data wrangling and preprocessing
+- `matplotlib`, `seaborn`, `plotly`: Visual analytics and plots
+- `Pillow`, `matplotlib.image`, `tensorflow.keras.preprocessing.image`: Image reading & transformation
+- `tensorflow`, `keras`: Model definition and training
+- `joblib`: Save/load Python objects like models and metadata
+- `scikit-learn`: Evaluation metrics
+- `streamlit`: Interactive dashboard development
+
+## Credits
+
+- **Content:** All website content and logic were developed by Robert Divkovic.
+- **Code Institute**: Project structure inspiration and dataset curation.
+- **Kaggle**: Dataset source [Cherry Leaves Dataset](https://www.kaggle.com/codeinstitute/cherry-leaves)
+- **Stack Overflow**: For problem solving
+
+### The Sharp-Mind project draws inspiration from Code Institute preparation full stack project: 
+
+- [Code Institute, WalkthroughProject01 Malaria Detection Project](https://github.com/GyanShashwat1611/WalkthroughProject01)
+
+### Acknowledgments and Special Thanks to :
+
+### Code Institute
+
+#### This project was developed as part of the Code Institute's Full Stack Software Development program.
